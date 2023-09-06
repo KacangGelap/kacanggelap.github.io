@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Calculator</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Calculator</h5>
+                        <input type="text" id="display" class="form-control mb-3" disabled>
+                        <div class="btn-group btn-group-lg btn-group-justified mb-4 col-md-12">
+                            <button class="btn btn-danger" onclick="clearDisplay()">C</button>
+                        </div>
+                        <div class="btn-group btn-group-lg btn-group-justified mb-4 col-md-12">
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('1')">1</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('2')">2</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('3')">3</button>
+                            <button class="btn btn-warning col-md-3" onclick="appendToDisplay('+')">+</button>
+                        </div>
+                        <div class="btn-group btn-group-lg btn-group-justified mb-4 col-md-12">
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('4')">4</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('5')">5</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('6')">6</button>
+                            <button class="btn btn-warning col-md-3" onclick="appendToDisplay('-')">-</button>
+                        </div>
+                        <div class="btn-group btn-group-lg btn-group-justified mb-4 col-md-12">
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('7')">7</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('8')">8</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('9')">9</button>
+                            <button class="btn btn-warning col-md-3" onclick="appendToDisplay('*')">*</button>
+                        </div>
+                        <div class="btn-group btn-group-lg btn-group-justified mb-4 col-md-12">
+                            <button class="btn btn-primary col-md-3" onclick="toggleSign()">+/-</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('0')">0</button>
+                            <button class="btn btn-secondary col-md-3" onclick="appendToDisplay('.')">.</button>
+                            <button class="btn btn-warning col-md-3" onclick="calculateResult()">=</button>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function toggleSign() {
+            const display = document.getElementById('display');
+            const currentValue = parseFloat(display.value);
+            if (!isNaN(currentValue)) {
+                display.value = -currentValue;
+            }
+        }
+    </script>
+</body>
+</html>
